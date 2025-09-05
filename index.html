@@ -284,16 +284,31 @@
             border-radius: 8px;
         }
 
-        .header h1 {
-            font-size: 18px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ea580c, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0;
-            line-height: 1.2;
-        }
+                 .header-brand {
+             display: flex;
+             flex-direction: column;
+             gap: 2px;
+         }
+
+         .header h1 {
+             font-size: 18px;
+             font-weight: 700;
+             background: linear-gradient(135deg, #ea580c, #f97316);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
+             margin: 0;
+             line-height: 1.2;
+         }
+
+         .header-definition {
+             font-size: 10px;
+             font-style: italic;
+             color: #6b7280;
+             margin: 0;
+             line-height: 1.2;
+             font-weight: 400;
+         }
 
         .header-subtitle {
             margin-left: auto;
@@ -511,18 +526,20 @@
             display: flex;
         }
 
-        /* Modal content */
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            padding: 0;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
+                 /* Modal content */
+         .modal-content {
+             background: white;
+             border-radius: 16px;
+             padding: 0;
+             width: 100%;
+             max-width: 600px;
+             max-height: 90vh;
+             overflow-y: auto;
+             position: relative;
+             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+             margin: auto;
+             transform: translateY(0);
+         }
 
         .modal-header {
             background: linear-gradient(135deg, #ea580c, #f97316, #fb923c);
@@ -1006,12 +1023,15 @@
         <header class="header">
         <div class="header-content">
             <!-- Left side - Logo and Brand -->
-            <div class="header-left">
-                <div class="eagle-logo">
-                    <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
-                </div>
-                <h1>BANOG</h1>
-            </div>
+                         <div class="header-left">
+                 <div class="eagle-logo">
+                     <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                 </div>
+                 <div class="header-brand">
+                     <h1>BANOG</h1>
+                     <p class="header-definition">Bringing Accountability, New Outcomes, and Global Sustainability</p>
+                 </div>
+             </div>
 
             <!-- Center - Navigation -->
             <nav class="header-nav"></nav>
