@@ -16,14 +16,197 @@
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(251, 146, 60, 0.2);
-            padding: 20px 24px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 16px;
-            box-shadow: 0 4px 20px rgba(251, 146, 60, 0.1);
+            justify-content: space-between;
+            padding: 12px 24px;
+            min-height: 60px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex: 1;
+            justify-content: center;
+            margin: 0 20px;
+        }
+
+        .header-right {
+            flex-shrink: 0;
+        }
+
+        /* Navigation Links */
+        .nav-link {
+            color: #495057;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 12px;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-separator {
+            width: 1px;
+            height: 20px;
+            background: #dee2e6;
+            margin: 0 8px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Sectors Navigation */
+        .sectors-nav {
+            background: #e9ecef;
+            border-bottom: 1px solid #dee2e6;
+            padding: 8px 0;
+        }
+
+        .sectors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 0 24px;
+            scrollbar-width: thin;
+            scrollbar-color: #adb5bd transparent;
+        }
+
+        .sectors-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .sectors-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sectors-container::-webkit-scrollbar-thumb {
+            background: #adb5bd;
+            border-radius: 2px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 40px 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 20px;
+            background: #ffffff;
+            color: #495057;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #6c757d;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #007bff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .search-btn:hover {
+            background: #0056b3;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Sector Buttons */
+        .sector-btn {
+            background: #ffffff;
+            color: #495057;
+            border: 1px solid #ced4da;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .sector-btn:hover {
+            background: #e9ecef;
+            color: #007bff;
+            border-color: #007bff;
+            transform: translateY(-1px);
+        }
+
+        .sector-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+
+        .sector-btn.active:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
         }
 
         .eagle-logo {
@@ -53,12 +236,10 @@
         }
 
         .header h1 {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ea580c, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 24px;
+            font-weight: 700;
+            color: #495057;
+            margin: 0;
         }
 
         .header-subtitle {
@@ -173,11 +354,22 @@
         .agency-website {
             color: #a16207;
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             word-break: break-all;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+        }
+
+        .agency-sector {
+            color: #ea580c;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding: 4px 8px;
+            background: rgba(251, 146, 60, 0.1);
+            border-radius: 12px;
+            display: inline-block;
         }
 
         .agency-website:hover {
@@ -582,12 +774,41 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header {
-                padding: 12px 16px;
+            .header-content {
+                padding: 8px 16px;
+                flex-wrap: wrap;
+                gap: 12px;
             }
             
-            .header-subtitle {
-                display: none;
+            .header-nav {
+                order: 3;
+                width: 100%;
+                margin: 8px 0 0 0;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 8px 0;
+            }
+            
+            .nav-link {
+                font-size: 13px;
+                padding: 6px 8px;
+            }
+            
+            .nav-separator {
+                margin: 0 4px;
+            }
+            
+            .search-input-wrapper {
+                max-width: 200px;
+            }
+            
+            .sectors-container {
+                padding: 0 16px;
+            }
+            
+            .sector-btn {
+                padding: 4px 8px;
+                font-size: 11px;
             }
             
             .main-content {
@@ -617,14 +838,29 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="eagle-logo">
-            <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+        <div class="header-content">
+            <!-- Left side - Logo and Institution Info -->
+            <div class="header-left">
+                <div class="institution-logo">
+                    <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                </div>
+                <div class="institution-info">
+                    <h1 class="institution-name">BANOG</h1>
+                    <p class="institution-motto">Building A Network Of Government</p>
+                </div>
+            </div>
+
+            <!-- Right side - Navigation Menu -->
+            <nav class="header-nav">
+                <a href="#" class="nav-link">ABOUT <span class="dropdown-arrow">▼</span></a>
+                <a href="#" class="nav-link">ADMINISTRATION <span class="dropdown-arrow">▼</span></a>
+                <a href="#" class="nav-link">ACADEMICS <span class="dropdown-arrow">▼</span></a>
+                <a href="#" class="nav-link">RESEARCH <span class="dropdown-arrow">▼</span></a>
+                <a href="#" class="nav-link">INVITATION TO BID</a>
+                <a href="#" class="nav-link">ADMISSION</a>
+            </nav>
         </div>
-        <h1>BANOG</h1>
-        <div class="header-subtitle">Government Agencies Directory</div>
-    </header>
-
-
+    </header>  
 
     <!-- Main content -->
     <main class="main-content">
@@ -724,12 +960,21 @@
         const usernameInput = document.getElementById('username');
         const passwordInput = document.getElementById('password');
         
+        // Search elements
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        
 
         
         // Secret login state
         let headerClickCount = 0;
         let logoClickCount = 0;
         let isLoginSequenceActive = false;
+        
+        // Sector filtering state
+        let currentSector = 'all';
+        let allAgencies = [];
+        let searchQuery = '';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -752,6 +997,76 @@
             
             // Secret login sequence
             setupSecretLoginSequence();
+            
+            // Sector navigation event listeners
+            document.querySelectorAll('.sector-btn').forEach(btn => {
+                btn.addEventListener('click', handleSectorClick);
+            });
+            
+            // Search event listeners
+            searchInput.addEventListener('input', handleSearch);
+            searchBtn.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+        }
+
+        function handleSectorClick(e) {
+            const sector = e.target.dataset.sector;
+            
+            // Update active button
+            document.querySelectorAll('.sector-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            
+            // Update current sector and filter agencies
+            currentSector = sector;
+            filterAgenciesBySector();
+        }
+
+        function handleSearch() {
+            searchQuery = searchInput.value.trim().toLowerCase();
+            filterAgencies();
+        }
+
+        function filterAgencies() {
+            let filteredAgencies = allAgencies;
+            
+            // Filter by sector
+            if (currentSector !== 'all') {
+                filteredAgencies = filteredAgencies.filter(agency => 
+                    agency.sector === currentSector
+                );
+            }
+            
+            // Filter by search query
+            if (searchQuery) {
+                filteredAgencies = filteredAgencies.filter(agency => {
+                    const agencyName = agency.agency_name.toLowerCase();
+                    const website = agency.website_url.toLowerCase();
+                    const sector = (agency.sector || '').toLowerCase();
+                    
+                    // Search in services
+                    const services = agency.agency_services?.map(rel => rel.services) || [];
+                    const serviceNames = services.map(service => service.name.toLowerCase()).join(' ');
+                    const serviceDescriptions = services.map(service => service.description.toLowerCase()).join(' ');
+                    
+                    return agencyName.includes(searchQuery) ||
+                           website.includes(searchQuery) ||
+                           sector.includes(searchQuery) ||
+                           serviceNames.includes(searchQuery) ||
+                           serviceDescriptions.includes(searchQuery);
+                });
+            }
+            
+            displayAgencies(filteredAgencies);
+        }
+
+        function filterAgenciesBySector() {
+            filterAgencies();
         }
 
         function closeModalHandler() {
@@ -772,7 +1087,8 @@
 
                 if (error) throw error;
 
-                displayAgencies(agencies || []);
+                allAgencies = agencies || [];
+                displayAgencies(allAgencies);
             } catch (error) {
                 console.error('Error loading agencies:', error);
                 showEmptyState();
@@ -800,6 +1116,7 @@
                         <div class="agency-logo" style="display: ${agency.logo_url ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 32px; color: #9ca3af;">🏛️</div>
                         <div class="agency-name">${agency.agency_name}</div>
                         <a href="${agency.website_url}" target="_blank" rel="noopener noreferrer" class="agency-website">${agency.website_url}</a>
+                        ${agency.sector ? `<div class="agency-sector">${agency.sector}</div>` : ''}
                         <div class="agency-services">
                             ${services.slice(0, 3).map(service => 
                                 `<span class="service-tag">${service.name}</span>`

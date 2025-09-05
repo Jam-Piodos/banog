@@ -15,14 +15,42 @@ body {
 
 /* Header */
 .header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(251, 146, 60, 0.2);
-  padding: 20px 24px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 16px;
-  box-shadow: 0 4px 20px rgba(251, 146, 60, 0.1);
+  justify-content: space-between;
+  padding: 12px 24px;
+  min-height: 60px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .eagle-logo {
@@ -44,32 +72,185 @@ body {
 }
 
         .header h1 {
-          font-size: 28px;
-          font-weight: 800;
-          background: linear-gradient(135deg, #ea580c, #f97316);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+          font-size: 24px;
+          font-weight: 700;
+          color: #495057;
+          margin: 0;
+        }
+
+        /* Navigation Links */
+        .nav-link {
+          color: #495057;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 8px 12px;
+          transition: color 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .nav-link:hover {
+          color: #007bff;
+        }
+
+        .nav-separator {
+          width: 1px;
+          height: 20px;
+          background: #dee2e6;
+          margin: 0 8px;
+        }
+
+        .nav-dropdown {
+          position: relative;
+        }
+
+        .dropdown-arrow {
+          font-size: 10px;
+          margin-left: 4px;
+          transition: transform 0.2s ease;
+        }
+
+        .nav-dropdown:hover .dropdown-arrow {
+          transform: rotate(180deg);
+        }
+
+        /* Sectors Navigation */
+        .sectors-nav {
+          background: #e9ecef;
+          border-bottom: 1px solid #dee2e6;
+          padding: 8px 0;
+        }
+
+        .sectors-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          gap: 6px;
+          overflow-x: auto;
+          padding: 0 24px;
+          scrollbar-width: thin;
+          scrollbar-color: #adb5bd transparent;
+        }
+
+        .sectors-container::-webkit-scrollbar {
+          height: 4px;
+        }
+
+        .sectors-container::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        .sectors-container::-webkit-scrollbar-thumb {
+          background: #adb5bd;
+          border-radius: 2px;
+        }
+
+        /* Search Bar */
+        .search-container {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .search-input-wrapper {
+          position: relative;
+          max-width: 250px;
+          width: 100%;
+        }
+
+        .search-input {
+          width: 100%;
+          padding: 8px 40px 8px 12px;
+          border: 1px solid #ced4da;
+          border-radius: 20px;
+          background: #ffffff;
+          color: #495057;
+          font-size: 13px;
+          transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-input::placeholder {
+          color: #6c757d;
+        }
+
+        .search-btn {
+          position: absolute;
+          right: 6px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #007bff;
+          border: none;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: white;
+        }
+
+        .search-btn:hover {
+          background: #0056b3;
+          transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Sector Buttons */
+        .sector-btn {
+          background: #ffffff;
+          color: #495057;
+          border: 1px solid #ced4da;
+          padding: 6px 12px;
+          border-radius: 15px;
+          font-size: 12px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .sector-btn:hover {
+          background: #e9ecef;
+          color: #007bff;
+          border-color: #007bff;
+          transform: translateY(-1px);
+        }
+
+        .sector-btn.active {
+          background: #007bff;
+          color: white;
+          border-color: #007bff;
+          box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+
+        .sector-btn.active:hover {
+          background: #0056b3;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
         }
 
         .logout-btn {
-          margin-left: auto;
-          background: linear-gradient(135deg, #dc2626, #ef4444);
+          background: #dc3545;
           color: white;
           border: none;
           padding: 8px 16px;
-          border-radius: 8px;
+          border-radius: 6px;
           font-size: 14px;
-          font-weight: 600;
+          font-weight: 500;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
         }
 
         .logout-btn:hover {
-          background: linear-gradient(135deg, #b91c1c, #dc2626);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+          background: #c82333;
+          transform: translateY(-1px);
         }
 
 /* Main content */
@@ -443,8 +624,41 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .header {
-    padding: 12px 16px;
+  .header-content {
+    padding: 8px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .header-nav {
+    order: 3;
+    width: 100%;
+    margin: 8px 0 0 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
+  
+  .nav-link {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+  
+  .nav-separator {
+    margin: 0 4px;
+  }
+  
+  .search-input-wrapper {
+    max-width: 200px;
+  }
+  
+  .sectors-container {
+    padding: 0 16px;
+  }
+  
+  .sector-btn {
+    padding: 4px 8px;
+    font-size: 11px;
   }
   
   .main-content {
@@ -470,11 +684,51 @@ body {
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="eagle-logo">
-      <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+    <div class="header-content">
+      <!-- Left side - Logo and Brand -->
+      <div class="header-left">
+        <div class="eagle-logo">
+          <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+        </div>
+        <h1>BANOG Admin</h1>
+      </div>
+
+      <!-- Center - Navigation -->
+      <nav class="header-nav">
+        <div class="sectors-container">
+          <button class="sector-btn active" data-sector="all">All</button>
+          <button class="sector-btn" data-sector="Education">Education</button>
+          <button class="sector-btn" data-sector="Environment">Environment</button>
+          <button class="sector-btn" data-sector="Law & Justice">Law & Justice</button>
+          <button class="sector-btn" data-sector="Health">Health</button>
+          <button class="sector-btn" data-sector="Transportation">Transportation</button>
+          <button class="sector-btn" data-sector="Finance">Finance</button>
+          <button class="sector-btn" data-sector="Defense">Defense</button>
+          <button class="sector-btn" data-sector="Agriculture">Agriculture</button>
+          <button class="sector-btn" data-sector="Technology">Technology</button>
+          <button class="sector-btn" data-sector="Social Services">Social Services</button>
+          <button class="sector-btn" data-sector="Infrastructure">Infrastructure</button>
+          <button class="sector-btn" data-sector="Other">Other</button>
+        </div>
+      </nav>
+
+      <!-- Right side - Search and Logout -->
+      <div class="header-right">
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search agencies...">
+            <button class="search-btn" id="searchBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </div>
     </div>
-    <h1>BANOG Admin</h1>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
   </header>
 
   <!-- Main content -->
