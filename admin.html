@@ -20,62 +20,78 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  min-height: 60px;
-}
+ .header-content {
+   max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 12px 20px;
+   min-height: 70px;
+ }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
+ .header-left {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   flex-shrink: 0;
+   min-width: 200px;
+ }
 
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex: 1;
-  justify-content: center;
-  margin: 0 20px;
-}
+ .header-nav {
+   display: flex;
+   align-items: center;
+   gap: 0;
+   flex: 1;
+   justify-content: center;
+   margin: 0 20px;
+   max-width: 600px;
+ }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
+ .header-right {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   flex-shrink: 0;
+   min-width: 200px;
+   justify-content: flex-end;
+ }
 
 .eagle-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.eagle-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .eagle-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
         .header h1 {
-          font-size: 24px;
+          font-size: 18px;
           font-weight: 700;
-          color: #495057;
+          background: linear-gradient(135deg, #ea580c, #f97316);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           margin: 0;
+          line-height: 1.2;
         }
 
         /* Navigation Links */
@@ -83,14 +99,16 @@ body {
           color: #495057;
           text-decoration: none;
           font-size: 14px;
-          font-weight: 500;
-          padding: 8px 12px;
+          font-weight: 600;
+          padding: 8px 0;
           transition: color 0.2s ease;
           white-space: nowrap;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
         .nav-link:hover {
-          color: #007bff;
+            color: #ea580c;
         }
 
         .nav-separator {
@@ -114,22 +132,15 @@ body {
           transform: rotate(180deg);
         }
 
-        /* Sectors Navigation */
-        .sectors-nav {
-          background: #e9ecef;
-          border-bottom: 1px solid #dee2e6;
-          padding: 8px 0;
-        }
-
-        .sectors-container {
-          max-width: 1200px;
-          margin: 0 auto;
+        /* Sectors row below header */
+        .sectors-row {
           display: flex;
-          gap: 6px;
-          overflow-x: auto;
-          padding: 0 24px;
-          scrollbar-width: thin;
-          scrollbar-color: #adb5bd transparent;
+          flex-wrap: wrap;
+          gap: 6px 8px;
+          padding: 8px 20px 12px 20px;
+          justify-content: center;
+          background: #e9ecef;
+          border-top: 1px solid #dee2e6;
         }
 
         .sectors-container::-webkit-scrollbar {
@@ -153,25 +164,25 @@ body {
 
         .search-input-wrapper {
           position: relative;
-          max-width: 250px;
+          max-width: 200px;
           width: 100%;
         }
 
         .search-input {
           width: 100%;
-          padding: 8px 40px 8px 12px;
+          padding: 6px 32px 6px 10px;
           border: 1px solid #ced4da;
-          border-radius: 20px;
+          border-radius: 16px;
           background: #ffffff;
           color: #495057;
-          font-size: 13px;
+          font-size: 12px;
           transition: all 0.3s ease;
         }
 
         .search-input:focus {
-          outline: none;
-          border-color: #007bff;
-          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+            outline: none;
+            border-color: #ea580c;
+            box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.1);
         }
 
         .search-input::placeholder {
@@ -179,61 +190,68 @@ body {
         }
 
         .search-btn {
-          position: absolute;
-          right: 6px;
-          top: 50%;
-          transform: translateY(-50%);
-          background: #007bff;
-          border: none;
-          border-radius: 50%;
-          width: 24px;
-          height: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          color: white;
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #ea580c, #f97316);
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
         }
 
         .search-btn:hover {
-          background: #0056b3;
+          background: linear-gradient(135deg, #dc2626, #ea580c);
           transform: translateY(-50%) scale(1.05);
         }
 
         /* Sector Buttons */
         .sector-btn {
-          background: #ffffff;
+          background: transparent;
           color: #495057;
-          border: 1px solid #ced4da;
+          border: none;
           padding: 6px 12px;
-          border-radius: 15px;
-          font-size: 12px;
-          font-weight: 500;
+          border-radius: 0;
+          font-size: 13px;
+          font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
           white-space: nowrap;
           flex-shrink: 0;
+          text-transform: uppercase;
+          letter-spacing: 0.3px;
+          position: relative;
         }
 
         .sector-btn:hover {
-          background: #e9ecef;
-          color: #007bff;
-          border-color: #007bff;
-          transform: translateY(-1px);
+          color: #ea580c;
+          background: rgba(234, 88, 12, 0.1);
         }
 
         .sector-btn.active {
-          background: #007bff;
-          color: white;
-          border-color: #007bff;
-          box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+          color: #ea580c;
+          background: rgba(234, 88, 12, 0.1);
+        }
+
+        .sector-btn.active::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: #ea580c;
         }
 
         .sector-btn.active:hover {
-          background: #0056b3;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+          background: rgba(234, 88, 12, 0.15);
         }
 
         .logout-btn {
@@ -622,63 +640,72 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .header-content {
-    padding: 8px 16px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  
-  .header-nav {
-    order: 3;
-    width: 100%;
-    margin: 8px 0 0 0;
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding: 8px 0;
-  }
-  
-  .nav-link {
-    font-size: 13px;
-    padding: 6px 8px;
-  }
-  
-  .nav-separator {
-    margin: 0 4px;
-  }
-  
-  .search-input-wrapper {
-    max-width: 200px;
-  }
-  
-  .sectors-container {
-    padding: 0 16px;
-  }
-  
-  .sector-btn {
-    padding: 4px 8px;
-    font-size: 11px;
-  }
-  
-  .main-content {
-    padding: 16px;
-  }
-  
-  .agencies-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal-content {
-    margin: 20px;
-    padding: 20px;
-  }
-  
-  .service-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-}
+ /* Responsive */
+ @media (max-width: 1024px) {
+   .header-nav {
+     margin: 0 10px;
+     max-width: 500px;
+   }
+   
+   .sector-btn {
+     padding: 6px 10px;
+     font-size: 12px;
+   }
+ }
+
+ @media (max-width: 768px) {
+   .header-content {
+     padding: 10px 16px;
+     flex-wrap: wrap;
+     gap: 8px;
+     min-height: auto;
+   }
+   
+   .header-left {
+     min-width: auto;
+   }
+   
+   .header-right {
+     min-width: auto;
+   }
+   
+   .header-nav {
+     order: 3;
+     width: 100%;
+     margin: 6px 0 0 0;
+     justify-content: flex-start;
+     overflow-x: auto;
+     padding: 6px 0;
+     max-width: none;
+   }
+   
+   .search-input-wrapper {
+     max-width: 150px;
+   }
+   
+   .sector-btn {
+     padding: 5px 8px;
+     font-size: 11px;
+   }
+   
+   .main-content {
+     padding: 16px;
+   }
+   
+   .agencies-grid {
+     grid-template-columns: 1fr;
+   }
+   
+   .modal-content {
+     margin: 20px;
+     padding: 20px;
+   }
+   
+   .service-item {
+     grid-template-columns: 1fr;
+     gap: 8px;
+   }
+ }
 </style>
 </head>
 <body>
@@ -693,24 +720,8 @@ body {
         <h1>BANOG Admin</h1>
       </div>
 
-      <!-- Center - Navigation -->
-      <nav class="header-nav">
-        <div class="sectors-container">
-          <button class="sector-btn active" data-sector="all">All</button>
-          <button class="sector-btn" data-sector="Education">Education</button>
-          <button class="sector-btn" data-sector="Environment">Environment</button>
-          <button class="sector-btn" data-sector="Law & Justice">Law & Justice</button>
-          <button class="sector-btn" data-sector="Health">Health</button>
-          <button class="sector-btn" data-sector="Transportation">Transportation</button>
-          <button class="sector-btn" data-sector="Finance">Finance</button>
-          <button class="sector-btn" data-sector="Defense">Defense</button>
-          <button class="sector-btn" data-sector="Agriculture">Agriculture</button>
-          <button class="sector-btn" data-sector="Technology">Technology</button>
-          <button class="sector-btn" data-sector="Social Services">Social Services</button>
-          <button class="sector-btn" data-sector="Infrastructure">Infrastructure</button>
-          <button class="sector-btn" data-sector="Other">Other</button>
-        </div>
-      </nav>
+      <!-- Center - Navigation (empty, sectors are below) -->
+      <nav class="header-nav"></nav>
 
       <!-- Right side - Search and Logout -->
       <div class="header-right">
@@ -729,6 +740,26 @@ body {
       </div>
     </div>
 
+    <!-- Sectors row (below logo/title and search) -->
+    <div class="sectors-row">
+      <button class="sector-btn active" data-sector="all">All</button>
+      <button class="sector-btn" data-sector="Education">Education</button>
+      <button class="sector-btn" data-sector="Environment">Environment</button>
+      <button class="sector-btn" data-sector="Law & Justice">Law & Justice</button>
+      <button class="sector-btn" data-sector="Health">Health</button>
+      <button class="sector-btn" data-sector="Transportation">Transportation</button>
+      <button class="sector-btn" data-sector="Finance">Finance</button>
+      <button class="sector-btn" data-sector="Defense">Defense</button>
+      <button class="sector-btn" data-sector="Agriculture">Agriculture</button>
+      <button class="sector-btn" data-sector="Technology">Technology</button>
+      <button class="sector-btn" data-sector="Social Services">Social Services</button>
+      <button class="sector-btn" data-sector="Infrastructure">Infrastructure</button>
+      <button class="sector-btn" data-sector="Other">Other</button>
+    </div>
+    <audio controls autoplay style="display: none;">
+      <source src="relapse.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+  </audio>
   </header>
 
   <!-- Main content -->
@@ -766,6 +797,25 @@ body {
         <div class="form-group">
           <label for="website">Official Website</label>
           <input type="url" id="website" name="website" placeholder="https://example.gov" required>
+        </div>
+
+        <div class="form-group">
+          <label for="sector">Sector</label>
+          <select id="sector" name="sector" required>
+            <option value="" disabled selected>Select sector</option>
+            <option value="Education">Education</option>
+            <option value="Environment">Environment</option>
+            <option value="Law & Justice">Law & Justice</option>
+            <option value="Health">Health</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Finance">Finance</option>
+            <option value="Defense">Defense</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Technology">Technology</option>
+            <option value="Social Services">Social Services</option>
+            <option value="Infrastructure">Infrastructure</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -816,6 +866,7 @@ body {
     // Form elements
     const agencyNameInput = document.getElementById('agencyName');
     const websiteInput = document.getElementById('website');
+    const sectorSelect = document.getElementById('sector');
     const logoInput = document.getElementById('logo');
     const logoPreview = document.getElementById('logoPreview');
     const logoImg = document.getElementById('logoImg');
@@ -825,6 +876,7 @@ body {
     // State
     let currentAgencyId = null;
     let isEditing = false;
+    let currentLogoUrl = null;
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
@@ -837,6 +889,11 @@ body {
       loadAgencies();
       setupEventListeners();
       addServiceItem(); // Add one service by default
+      
+      // Setup sector filtering in admin
+      document.querySelectorAll('.sector-btn').forEach(btn => {
+        btn.addEventListener('click', handleSectorClick);
+      });
     });
 
     function checkAdminAccess() {
@@ -912,6 +969,7 @@ body {
       formMessage.style.display = 'none';
       currentAgencyId = null;
       isEditing = false;
+      currentLogoUrl = null;
       addServiceItem(); // Add one service by default
     }
 
@@ -1001,10 +1059,11 @@ body {
       
       const agencyName = agencyNameInput.value.trim();
       const website = websiteInput.value.trim();
+      const sector = sectorSelect.value;
       const logoFile = logoInput.files[0];
       const services = collectServices();
 
-      if (!agencyName || !website) {
+      if (!agencyName || !website || !sector) {
         showMessage('Please fill all required fields.', 'error');
         return;
       }
@@ -1018,15 +1077,15 @@ body {
       submitBtn.innerHTML = '<span class="loading"></span> Saving...';
 
       try {
-        let logoUrl = null;
+        let logoUrl = currentLogoUrl || null;
         if (logoFile) {
           logoUrl = await uploadLogo(logoFile);
         }
 
         if (isEditing) {
-          await updateAgency(currentAgencyId, { agencyName, website, logoUrl, services });
+          await updateAgency(currentAgencyId, { agencyName, website, sector, logoUrl, services });
         } else {
-          await createAgency({ agencyName, website, logoUrl, services });
+          await createAgency({ agencyName, website, sector, logoUrl, services });
         }
 
         showMessage('Agency saved successfully!', 'success');
@@ -1043,13 +1102,14 @@ body {
       }
     }
 
-    async function createAgency({ agencyName, website, logoUrl, services }) {
+    async function createAgency({ agencyName, website, sector, logoUrl, services }) {
       // Insert agency
       const { data: agency, error: agencyError } = await supabase
         .from('agencies')
         .insert({
           agency_name: agencyName,
           website_url: website,
+          sector: sector,
           logo_url: logoUrl
         })
         .select()
@@ -1061,13 +1121,14 @@ body {
       await linkServicesToAgency(agency.id, services);
     }
 
-    async function updateAgency(agencyId, { agencyName, website, logoUrl, services }) {
+    async function updateAgency(agencyId, { agencyName, website, sector, logoUrl, services }) {
       // Update agency
       const { error: agencyError } = await supabase
         .from('agencies')
         .update({
           agency_name: agencyName,
           website_url: website,
+          sector: sector,
           logo_url: logoUrl
         })
         .eq('id', agencyId);
@@ -1122,11 +1183,12 @@ body {
               services(*)
             )
           `)
-          .order('created_at', { ascending: false });
+          .order('agency_name', { ascending: true });
 
         if (error) throw error;
 
-        displayAgencies(agencies || []);
+        allAgencies = agencies || [];
+        filterAgenciesBySector();
       } catch (error) {
         console.error('Error loading agencies:', error);
         showMessage('Error loading agencies', 'error');
@@ -1140,10 +1202,13 @@ body {
         return;
       }
 
+      // Ensure alphabetical order in case source isn't sorted
+      const sorted = [...agencies].sort((a, b) => (a.agency_name || '').localeCompare(b.agency_name || ''));
+
       agenciesGrid.style.display = 'grid';
       emptyState.style.display = 'none';
 
-      agenciesGrid.innerHTML = agencies.map(agency => {
+      agenciesGrid.innerHTML = sorted.map(agency => {
         const services = agency.agency_services?.map(rel => rel.services) || [];
         
         return `
@@ -1208,7 +1273,9 @@ body {
         // Populate form
         agencyNameInput.value = agency.agency_name;
         websiteInput.value = agency.website_url;
+        sectorSelect.value = agency.sector || '';
         
+        currentLogoUrl = agency.logo_url || null;
         if (agency.logo_url) {
           logoImg.src = agency.logo_url;
           logoImg.onerror = () => {
@@ -1256,6 +1323,39 @@ body {
       
       // Redirect to index page
       window.location.href = 'index.html';
+    }
+
+    // Sector filtering for admin
+    let currentSector = 'all';
+    let allAgencies = [];
+
+    function handleSectorClick(e) {
+      const sector = e.target.dataset.sector;
+      
+      // Update active button
+      document.querySelectorAll('.sector-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      
+      // Update current sector and filter agencies
+      currentSector = sector;
+      filterAgenciesBySector();
+    }
+
+    function filterAgenciesBySector() {
+      let filteredAgencies = allAgencies;
+      
+      // Filter by sector
+      if (currentSector !== 'all') {
+        filteredAgencies = filteredAgencies.filter(agency => 
+          agency.sector === currentSector
+        );
+      }
+      
+      // Sort alphabetically
+      filteredAgencies.sort((a, b) => (a.agency_name || '').localeCompare(b.agency_name || ''));
+      displayAgencies(filteredAgencies);
     }
   </script>
 </body>
