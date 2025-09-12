@@ -180,6 +180,7 @@
             border-color: #ea580c;
             box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.15);
             transform: scale(1.02);
+            background: #ffffff;
         }
 
         .search-input::placeholder {
@@ -244,8 +245,15 @@
         .sector-btn.active {
             color: #ea580c;
             background: linear-gradient(135deg, rgba(234, 88, 12, 0.15), rgba(234, 88, 12, 0.25));
-            transform: translateY(-1px);
+            transform: translateY(-1px) scale(1.05);
             box-shadow: 0 2px 6px rgba(234, 88, 12, 0.3);
+            animation: pulse 0.3s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: translateY(-1px) scale(1); }
+            50% { transform: translateY(-1px) scale(1.08); }
+            100% { transform: translateY(-1px) scale(1.05); }
         }
 
         .sector-btn.active::after {
@@ -386,6 +394,13 @@
             position: relative;
             overflow: hidden;
             animation: slideInUp 0.6s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .agency-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @keyframes slideInUp {
@@ -529,24 +544,21 @@
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.6);
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
             overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .modal-overlay.show {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            align-items: center;
-            justify-content: center;
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Modal content */
@@ -561,9 +573,14 @@
             position: relative;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             margin: auto;
-            transform: translateY(0);
+            transform: translateY(30px) scale(0.95);
             display: flex;
             flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0) scale(1);
         }
 
         .modal-header {
@@ -589,12 +606,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.8;
         }
 
         .modal-close:hover {
             background: rgba(255,255,255,0.3);
-            transform: scale(1.1) rotate(90deg);
+            transform: scale(1.15) rotate(90deg);
+            opacity: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .modal-close:active {
+            transform: scale(0.95) rotate(90deg);
         }
 
         .modal-logo {
@@ -658,7 +682,16 @@
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: slideInUp 0.4s ease-out forwards;
         }
+
+        .service-item:nth-child(1) { animation-delay: 0.1s; }
+        .service-item:nth-child(2) { animation-delay: 0.2s; }
+        .service-item:nth-child(3) { animation-delay: 0.3s; }
+        .service-item:nth-child(4) { animation-delay: 0.4s; }
+        .service-item:nth-child(5) { animation-delay: 0.5s; }
 
         .service-name {
             font-size: 16px;
@@ -1312,7 +1345,9 @@
         function setupEventListeners() {
             closeModal.addEventListener('click', closeModalHandler);
             modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) closeModalHandler();
+                if (e.target === modalOverlay) {
+                    closeModalHandler();
+                }
             });
             // Close on Escape key
             document.addEventListener('keydown', (e) => {
@@ -1446,6 +1481,15 @@
         function closeModalHandler() {
             modalOverlay.classList.remove('show');
             document.body.classList.remove('no-scroll');
+            
+            // Return focus to the agency card that was clicked
+            if (window.lastClickedAgencyCard) {
+                window.lastClickedAgencyCard.focus();
+                window.lastClickedAgencyCard.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
         }
 
         async function loadAgencies() {
@@ -1479,11 +1523,11 @@
             agenciesGrid.style.display = 'grid';
             emptyState.style.display = 'none';
 
-            agenciesGrid.innerHTML = agencies.map(agency => {
+            agenciesGrid.innerHTML = agencies.map((agency, index) => {
                 const services = agency.agency_services?.map(rel => rel.services) || [];
                 
                 return `
-                    <div class="agency-card" data-agency-id="${agency.id}" role="gridcell" tabindex="0" aria-label="Agency: ${agency.agency_name}" aria-describedby="agency-${agency.id}-description">
+                    <div class="agency-card" data-agency-id="${agency.id}" role="gridcell" tabindex="0" aria-label="Agency: ${agency.agency_name}" aria-describedby="agency-${agency.id}-description" style="animation-delay: ${index * 0.1}s;">
                         ${agency.logo_url ? 
                             `<img src="${agency.logo_url}" alt="${agency.agency_name} logo" class="agency-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
                             ``
@@ -1510,6 +1554,9 @@
             agenciesGrid.removeEventListener('keydown', handleAgencyCardKeydown);
             agenciesGrid.addEventListener('click', handleAgencyCardClick);
             agenciesGrid.addEventListener('keydown', handleAgencyCardKeydown);
+            
+            // Trigger staggered animations
+            triggerStaggeredAnimations();
         }
 
         function handleAgencyCardClick(e) {
@@ -1518,6 +1565,9 @@
             
             e.preventDefault();
             e.stopPropagation();
+            
+            // Store reference to the clicked card for focus return
+            window.lastClickedAgencyCard = card;
             
             const agencyId = parseInt(card.dataset.agencyId);
             if (isNaN(agencyId)) return;
@@ -1528,6 +1578,8 @@
         function handleAgencyCardKeydown(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
+                // Store reference to the focused card for focus return
+                window.lastClickedAgencyCard = e.target;
                 handleAgencyCardClick(e);
             }
         }
@@ -1590,6 +1642,15 @@
         function showEmptyState() {
             agenciesGrid.style.display = 'none';
             emptyState.style.display = 'block';
+        }
+
+        function triggerStaggeredAnimations() {
+            const cards = document.querySelectorAll('.agency-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('animate-in');
+                }, index * 100); // 100ms delay between each card
+            });
         }
 
         // Secret Login System
