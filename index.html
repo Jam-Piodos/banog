@@ -16,6 +16,11 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
+        /* Prevent background scroll when modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -154,48 +159,51 @@
 
         .search-input-wrapper {
             position: relative;
-            max-width: 200px;
+            max-width: 250px;
             width: 100%;
         }
 
         .search-input {
             width: 100%;
-            padding: 6px 32px 6px 10px;
-            border: 1px solid #ced4da;
-            border-radius: 16px;
+            padding: 8px 36px 8px 12px;
+            border: 2px solid #ced4da;
+            border-radius: 20px;
             background: #ffffff;
             color: #495057;
-            font-size: 12px;
+            font-size: 14px;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .search-input:focus {
             outline: none;
             border-color: #ea580c;
-            box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+            box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.15);
             transform: scale(1.02);
         }
 
         .search-input::placeholder {
             color: #6c757d;
+            font-weight: 400;
         }
 
         .search-btn {
             position: absolute;
-            right: 4px;
+            right: 6px;
             top: 50%;
             transform: translateY(-50%);
             background: linear-gradient(135deg, #ea580c, #f97316);
             border: none;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
             color: white;
+            font-size: 12px;
         }
 
         .search-btn:hover {
@@ -338,19 +346,24 @@
         }
 
         .page-title h2 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 800;
             background: linear-gradient(135deg, #ea580c, #f97316);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .page-title p {
-            font-size: 18px;
+            font-size: 20px;
             color: #a16207;
             font-weight: 500;
+            line-height: 1.4;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         /* Agency cards grid */
@@ -424,21 +437,23 @@
         }
 
         .agency-name {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             color: #1c1917;
             line-height: 1.3;
+            letter-spacing: -0.3px;
         }
 
         .agency-website {
             color: #a16207;
-            font-size: 14px;
-            margin-bottom: 12px;
+            font-size: 15px;
+            margin-bottom: 14px;
             word-break: break-all;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            line-height: 1.4;
         }
 
         .agency-sector {
@@ -520,26 +535,36 @@
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
+            overflow-y: auto;
         }
 
         .modal-overlay.show {
             display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            align-items: center;
+            justify-content: center;
         }
 
-                 /* Modal content */
-         .modal-content {
-             background: white;
-             border-radius: 16px;
-             padding: 0;
-             width: 100%;
-             max-width: 600px;
-             max-height: 90vh;
-             overflow-y: auto;
-             position: relative;
-             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-             margin: auto;
-             transform: translateY(0);
-         }
+        /* Modal content */
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 0;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin: auto;
+            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
+        }
 
         .modal-header {
             background: linear-gradient(135deg, #ea580c, #f97316, #fb923c);
@@ -604,6 +629,8 @@
 
         .modal-body {
             padding: 24px;
+            flex: 1;
+            overflow-y: auto;
         }
 
         .services-section {
@@ -939,6 +966,45 @@
 
 
 
+        /* Screen reader only text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles for better accessibility */
+        .nav-link:focus,
+        .sector-btn:focus,
+        .agency-card:focus {
+            outline: 2px solid #ea580c;
+            outline-offset: 2px;
+        }
+
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #ea580c;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .header-nav {
@@ -954,51 +1020,90 @@
 
         @media (max-width: 768px) {
             .header-content {
-                padding: 10px 16px;
+                padding: 12px 16px;
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 12px;
                 min-height: auto;
             }
             
             .header-left {
                 min-width: auto;
+                flex: 1;
             }
             
             .header-right {
                 min-width: auto;
+                flex: 1;
+                justify-content: flex-end;
             }
             
             .header-nav {
                 order: 3;
                 width: 100%;
-                margin: 6px 0 0 0;
-                justify-content: flex-start;
+                margin: 8px 0 0 0;
+                justify-content: center;
                 overflow-x: auto;
-                padding: 6px 0;
+                padding: 8px 0;
                 max-width: none;
+                gap: 4px;
+            }
+            
+            .nav-link {
+                font-size: 13px;
+                padding: 6px 8px;
             }
             
             .search-input-wrapper {
-                max-width: 150px;
+                max-width: 180px;
+            }
+            
+            .search-input {
+                font-size: 13px;
+                padding: 6px 30px 6px 10px;
             }
             
             .sector-btn {
-                padding: 5px 8px;
-                font-size: 11px;
+                padding: 6px 10px;
+                font-size: 12px;
+                margin: 2px;
             }
             
             .main-content {
-                padding: 16px;
+                padding: 20px 16px;
+            }
+            
+            .page-title h2 {
+                font-size: 32px;
+            }
+            
+            .page-title p {
+                font-size: 18px;
             }
             
             .agencies-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 20px;
+            }
+            
+            .agency-card {
+                padding: 24px;
+            }
+            
+            .agency-name {
+                font-size: 22px;
             }
             
             .modal-content {
-                margin: 20px;
+                margin: 16px;
                 max-height: 95vh;
+                width: calc(100% - 32px);
+                max-width: 500px;
+            }
+            
+            .modal-overlay {
+                padding: 16px;
+                align-items: center;
+                justify-content: center;
             }
             
             .modal-header {
@@ -1012,6 +1117,9 @@
     </style>
 </head>
     <body>
+        <!-- Skip to main content link for accessibility -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        
         <!-- Page Loading Screen -->
         <div class="page-loading">
             <img src="birdy.jpg" alt="BANOG Logo" class="logo">
@@ -1033,16 +1141,15 @@
                  </div>
              </div>
 
-            <!-- Center - Navigation -->
-            <nav class="header-nav"></nav>
 
             <!-- Right side - Search -->
             <div class="header-right">
                 <div class="search-container">
                     <div class="search-input-wrapper">
-                        <input type="text" id="searchInput" class="search-input" placeholder="Search agencies...">
-                        <button class="search-btn" id="searchBtn">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <label for="searchInput" class="sr-only">Search government agencies</label>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search agencies..." aria-label="Search government agencies" aria-describedby="search-help">
+                        <button class="search-btn" id="searchBtn" aria-label="Search" title="Search agencies">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <path d="m21 21-4.35-4.35"></path>
                             </svg>
@@ -1053,31 +1160,31 @@
         </div>
 
         <!-- Sectors row (below logo/title and search) -->
-        <div class="sectors-row">
-            <button class="sector-btn active" data-sector="all">All</button>
-            <button class="sector-btn" data-sector="Education">Education</button>
-            <button class="sector-btn" data-sector="Environment">Environment</button>
-            <button class="sector-btn" data-sector="Law & Justice">Law & Justice</button>
-            <button class="sector-btn" data-sector="Health">Health</button>
-            <button class="sector-btn" data-sector="Transportation">Transportation</button>
-            <button class="sector-btn" data-sector="Finance">Finance</button>
-            <button class="sector-btn" data-sector="Defense">Defense</button>
-            <button class="sector-btn" data-sector="Agriculture">Agriculture</button>
-            <button class="sector-btn" data-sector="Technology">Technology</button>
-            <button class="sector-btn" data-sector="Social Services">Social Services</button>
-            <button class="sector-btn" data-sector="Infrastructure">Infrastructure</button>
-            <button class="sector-btn" data-sector="Other">Other</button>
+        <div class="sectors-row" role="tablist" aria-label="Filter agencies by sector">
+            <button class="sector-btn active" data-sector="all" role="tab" aria-selected="true" aria-controls="agenciesGrid" tabindex="0">All</button>
+            <button class="sector-btn" data-sector="Education" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Education</button>
+            <button class="sector-btn" data-sector="Environment" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Environment</button>
+            <button class="sector-btn" data-sector="Law & Justice" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Law & Justice</button>
+            <button class="sector-btn" data-sector="Health" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Health</button>
+            <button class="sector-btn" data-sector="Transportation" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Transportation</button>
+            <button class="sector-btn" data-sector="Finance" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Finance</button>
+            <button class="sector-btn" data-sector="Defense" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Defense</button>
+            <button class="sector-btn" data-sector="Agriculture" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Agriculture</button>
+            <button class="sector-btn" data-sector="Technology" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Technology</button>
+            <button class="sector-btn" data-sector="Social Services" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Social Services</button>
+            <button class="sector-btn" data-sector="Infrastructure" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Infrastructure</button>
+            <button class="sector-btn" data-sector="Other" role="tab" aria-selected="false" aria-controls="agenciesGrid" tabindex="-1">Other</button>
         </div>
     </header>  
 
     <!-- Main content -->
-    <main class="main-content">
+    <main class="main-content" id="main-content" role="main">
         <div class="page-title">
             <h2>Government Agencies</h2>
             <p>Discover and connect with government agencies and their services</p>
         </div>
         
-        <div id="agenciesGrid" class="agencies-grid">
+        <div id="agenciesGrid" class="agencies-grid" role="grid" aria-label="Government agencies directory" aria-live="polite">
             <!-- Agencies will be loaded here -->
         </div>
         
@@ -1185,6 +1292,14 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // Hide loading screen after page loads
+            setTimeout(() => {
+                const loadingScreen = document.querySelector('.page-loading');
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+            }, 1500);
+            
             loadAgencies();
             setupEventListeners();
             // Ensure 'All' is selected and all agencies shown initially
@@ -1198,6 +1313,13 @@
             closeModal.addEventListener('click', closeModalHandler);
             modalOverlay.addEventListener('click', (e) => {
                 if (e.target === modalOverlay) closeModalHandler();
+            });
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (modalOverlay.classList.contains('show')) closeModalHandler();
+                    if (loginModalOverlay.classList.contains('show')) closeLoginModalHandler();
+                }
             });
             
             // Login modal event listeners
@@ -1213,6 +1335,7 @@
             // Sector navigation event listeners
             document.querySelectorAll('.sector-btn').forEach(btn => {
                 btn.addEventListener('click', handleSectorClick);
+                btn.addEventListener('keydown', handleSectorKeydown);
             });
             
             // Search event listeners
@@ -1231,12 +1354,49 @@
             // Update active button
             document.querySelectorAll('.sector-btn').forEach(btn => {
                 btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+                btn.setAttribute('tabindex', '-1');
             });
             e.target.classList.add('active');
+            e.target.setAttribute('aria-selected', 'true');
+            e.target.setAttribute('tabindex', '0');
             
             // Update current sector and filter agencies
             currentSector = sector;
             filterAgenciesBySector();
+        }
+
+        function handleSectorKeydown(e) {
+            const buttons = Array.from(document.querySelectorAll('.sector-btn'));
+            const currentIndex = buttons.indexOf(e.target);
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    const prevIndex = currentIndex > 0 ? currentIndex - 1 : buttons.length - 1;
+                    buttons[prevIndex].focus();
+                    break;
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    const nextIndex = currentIndex < buttons.length - 1 ? currentIndex + 1 : 0;
+                    buttons[nextIndex].focus();
+                    break;
+                case 'Enter':
+                case ' ':
+                    e.preventDefault();
+                    handleSectorClick(e);
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    buttons[0].focus();
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    buttons[buttons.length - 1].focus();
+                    break;
+            }
         }
 
         function handleSearch() {
@@ -1285,6 +1445,7 @@
 
         function closeModalHandler() {
             modalOverlay.classList.remove('show');
+            document.body.classList.remove('no-scroll');
         }
 
         async function loadAgencies() {
@@ -1322,31 +1483,33 @@
                 const services = agency.agency_services?.map(rel => rel.services) || [];
                 
                 return `
-                    <div class="agency-card" data-agency-id="${agency.id}">
+                    <div class="agency-card" data-agency-id="${agency.id}" role="gridcell" tabindex="0" aria-label="Agency: ${agency.agency_name}" aria-describedby="agency-${agency.id}-description">
                         ${agency.logo_url ? 
-                            `<img src="${agency.logo_url}" alt="${agency.agency_name}" class="agency-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
+                            `<img src="${agency.logo_url}" alt="${agency.agency_name} logo" class="agency-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
                             ``
                         }
-                        <div class="agency-logo" style="display: ${agency.logo_url ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 32px; color: #9ca3af;">🏛️</div>
-                        <div class="agency-name">${agency.agency_name}</div>
-                        <a href="${agency.website_url}" target="_blank" rel="noopener noreferrer" class="agency-website">${agency.website_url}</a>
-                        ${agency.sector ? `<div class="agency-sector">${agency.sector}</div>` : ''}
-                        <div class="agency-services">
+                        <div class="agency-logo" style="display: ${agency.logo_url ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 32px; color: #9ca3af;" aria-hidden="true">🏛️</div>
+                        <h3 class="agency-name">${agency.agency_name}</h3>
+                        <a href="${agency.website_url}" target="_blank" rel="noopener noreferrer" class="agency-website" aria-label="Visit ${agency.agency_name} website">${agency.website_url}</a>
+                        ${agency.sector ? `<div class="agency-sector" aria-label="Sector: ${agency.sector}">${agency.sector}</div>` : ''}
+                        <div class="agency-services" id="agency-${agency.id}-description" aria-label="Services offered">
                             ${services.slice(0, 3).map(service => 
-                                `<span class="service-tag">${service.name}</span>`
+                                `<span class="service-tag" aria-label="Service: ${service.name}">${service.name}</span>`
                             ).join('')}
-                            ${services.length > 3 ? `<span class="service-tag">+${services.length - 3} more</span>` : ''}
+                            ${services.length > 3 ? `<span class="service-tag" aria-label="${services.length - 3} additional services">+${services.length - 3} more</span>` : ''}
                         </div>
-                        <div class="view-details">
+                        <div class="view-details" aria-label="View detailed information about ${agency.agency_name}">
                             View Details →
                         </div>
                     </div>
                 `;
             }).join('');
 
-            // Add click event listeners to agency cards
+            // Add click and keyboard event listeners to agency cards
             agenciesGrid.removeEventListener('click', handleAgencyCardClick);
+            agenciesGrid.removeEventListener('keydown', handleAgencyCardKeydown);
             agenciesGrid.addEventListener('click', handleAgencyCardClick);
+            agenciesGrid.addEventListener('keydown', handleAgencyCardKeydown);
         }
 
         function handleAgencyCardClick(e) {
@@ -1360,6 +1523,13 @@
             if (isNaN(agencyId)) return;
             
             showAgencyDetails(agencyId);
+        }
+
+        function handleAgencyCardKeydown(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleAgencyCardClick(e);
+            }
         }
 
         async function showAgencyDetails(agencyId) {
@@ -1403,6 +1573,15 @@
                 }
 
                 modalOverlay.classList.add('show');
+                document.body.classList.add('no-scroll');
+                
+                // Ensure modal is centered
+                setTimeout(() => {
+                    const modal = document.querySelector('.modal-content');
+                    if (modal) {
+                        modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
             } catch (error) {
                 console.error('Error loading agency details:', error);
             }
@@ -1471,12 +1650,14 @@
         function openLoginModal() {
             loginModalOverlay.classList.add('show');
             usernameInput.focus();
+            document.body.classList.add('no-scroll');
         }
 
         function closeLoginModalHandler() {
             loginModalOverlay.classList.remove('show');
             loginForm.reset();
             hideLoginError();
+            document.body.classList.remove('no-scroll');
         }
 
         function handleLogin(e) {
