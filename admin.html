@@ -28,6 +28,7 @@ body {
    justify-content: space-between;
    padding: 12px 20px;
    min-height: 70px;
+   overflow: visible;
  }
 
  .header-left {
@@ -58,29 +59,33 @@ body {
  }
 
 .eagle-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
+  width: 220px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: none;
   user-select: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .eagle-logo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: none;
+  box-shadow: none;
+}
+
+.eagle-logo:active {
+  transform: none;
 }
 
 .eagle-logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
                  .header-brand {
@@ -732,7 +737,7 @@ body {
              <!-- Left side - Logo and Brand -->
        <div class="header-left">
          <div class="eagle-logo">
-           <img src="birdy.jpg" alt="BANOG Logo" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+           <img src="birdy.png" alt="BANOG Logo" draggable="false" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
          </div>
          <div class="header-brand">
            <h1>BANOG Admin</h1>
